@@ -15,6 +15,7 @@ console.log(getType({})); // "object"
 console.log(getType(() => {})); // "function"
 
 //----------------------------------------------------
+console.log('\n');
 
 // Returns true only if value is a number and not NaN
 function isNumber(value) {
@@ -27,6 +28,7 @@ console.log(isNumber('5')); // false
 console.log(isNumber(Infinity)); // true
 
 //----------------------------------------------------
+console.log('\n');
 
 // Predict true or false before running each line, then explain why in a comment
 console.log(Boolean(0)); // ?
@@ -40,6 +42,7 @@ console.log(Boolean([])); // ?  ← may surprise you
 console.log(Boolean({})); // ?  ← may surprise you
 
 //----------------------------------------------------
+console.log('\n');
 
 // Predict the output, then add a comment explaining why
 console.log(1 == '1'); // ?

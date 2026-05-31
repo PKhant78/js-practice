@@ -17,6 +17,7 @@ console.log(getNames(students));
 // ['Ada', 'Grace', 'Lin', 'Katherine', 'Evelyn']
 
 //----------------------------------------------------
+console.log('\n');
 
 // Use .filter()
 function getPassingStudents(students) {
@@ -27,6 +28,7 @@ console.log(getPassingStudents(students).map((s) => s.name));
 // ['Ada', 'Grace', 'Lin', 'Katherine']
 
 //----------------------------------------------------
+console.log('\n');
 
 // Use .find()
 function findById(students, id) {
@@ -37,6 +39,7 @@ console.log(findById(students, 3)?.name); // 'Lin'
 console.log(findById(students, 99)); // undefined
 
 //----------------------------------------------------
+console.log('\n');
 
 // Use .reduce()
 function getTotalScore(students) {
@@ -46,6 +49,7 @@ function getTotalScore(students) {
 console.log(getTotalScore(students)); // 409
 
 //----------------------------------------------------
+console.log('\n');
 
 // Use .some() — true if any student scored above 90
 function hasHighScorer(students) {
