@@ -35,8 +35,27 @@ console.log('\n--- Problem 1: BankAccount ---');
 //       What property name will you give the balance? Make sure you're consistent.
 
 class BankAccount {
-  // TODO: write your code here
+  constructor(owner, balance) {
+    this.owner = owner; this.balance = balance;
+  }
+  deposit(amount) {
+    this.balance += amount;
+    console.log(`Deposited $${amount}. New balance: $${this.balance}`);
+  }
+  withdraw(amount) {
+    if (amount > this.balance) 
+      {
+        console.log("Insufficient funds.");
+      }
+    else 
+      {
+        this.balance -= amount; 
+        console.log(`Withdrew $${amount}. New balance: $${this.balance}`);
+      }
+  } 
+  getBalance() {return this.balance;}
 }
+
 
 const account = new BankAccount('Alex', 100);
 account.deposit(50);           // "Deposited $50. New balance: $150"
@@ -64,7 +83,17 @@ console.log('\n--- Problem 2: Rectangle ---');
 // Hint: these methods don't need parameters — they read from `this`.
 
 class Rectangle {
-  // TODO: write your code here
+  constructor(width, height) {
+    this.width = width;
+    this.height = height;
+  }
+
+  area() {
+    return this.width*this.height;
+  }
+
+  perimeter() {return 2*(this.width*this.height)}
+  isSquare() {if (this.width === this.height) return true; else return false;}
 }
 
 const r1 = new Rectangle(4, 6);
@@ -98,11 +127,24 @@ console.log('\n--- Problem 3: Animal → Dog (inheritance) ---');
 //     (you don't need to here, but good to know)
 
 class Animal {
-  // TODO: write your code here
+  constructor(name, sound) {
+    this.name = name; this.sound = sound;
+  }
+  speak() {
+    console.log(`${this.name} says ${this.sound}!`)
+  }
 }
 
 class Dog extends Animal {
-  // TODO: write your code here
+  constructor(name, breed) {
+    super(name, 'woof');
+  }
+  fetch(item) {
+    console.log(`${this.name} fetches the ${item}!`)
+  }
+  speak() {
+    console.log(`${this.name} barks: WOOF WOOF!`)
+  }
 }
 
 const genericAnimal = new Animal('Parrot', 'squawk');
@@ -133,7 +175,26 @@ console.log('\n--- Problem 4: Stack ---');
 //       Which end of the array is the "top"? Pick one and be consistent.
 
 class Stack {
-  // TODO: write your code here
+  constructor () {
+    this.arr = [];
+  }
+  push(item) {
+    this.arr.push(item);
+  }
+  pop() {
+    if (this.isEmpty()) return undefined;
+    return this.arr.pop();
+  }
+  peek() {
+    return this.arr[this.arr.length - 1];
+  }
+  isEmpty() {
+    return this.arr.length === 0;
+  }
+  size() {
+    return this.arr.length;
+  }
+
 }
 
 const stack = new Stack();
@@ -174,7 +235,7 @@ class Stopwatch {
     //
     // Fix it by converting the callback to an arrow function.
     // Do not move or rename anything else.
-    const id = setInterval(function() {
+    const id = setInterval(() => {
       this.elapsed++;                         // ← broken: `this` is wrong here
       console.log('elapsed:', this.elapsed);  // will log NaN or crash
       if (this.elapsed >= 3) clearInterval(id);

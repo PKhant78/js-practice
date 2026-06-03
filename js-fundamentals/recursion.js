@@ -20,7 +20,9 @@ console.log('\n--- Problem 1: sumTo ---');
 //   - Recursive case: how does sumTo(n) relate to sumTo(n-1)?
 //     If you already had sumTo(n-1), what ONE thing would you add to get sumTo(n)?
 function sumTo(n) {
-  // TODO: write your code here
+  if (n === 1) return n;
+  if (n === 0) return 0;
+  else return sumTo(n-1) + n;
 }
 
 console.log(sumTo(1));  // 1
@@ -40,7 +42,8 @@ console.log('\n--- Problem 2: power ---');
 //   - Recursive case: how does power(base, exp) relate to power(base, exp - 1)?
 //     Hint: 2^4 = 2 * 2^3
 function power(base, exp) {
-  // TODO: write your code here
+  if (exp === 0) return 1;
+  else return power(base, exp-1) *base;
 }
 
 console.log(power(2, 0));  // 1
@@ -62,7 +65,8 @@ console.log('\n--- Problem 3: reverseString ---');
 // Hint: str[0] gives you the first character.
 //       str.slice(1) gives you everything after the first character.
 function reverseString(str) {
-  // TODO: write your code here
+  if (str === "") return "";
+  else return reverseString(str.slice(1))+str[0];
 }
 
 console.log(reverseString(''));        // ''
@@ -88,7 +92,12 @@ console.log('\n--- Problem 4: flatten ---');
 //   - Hint: you can use spread to combine arrays: [...result, ...flattenedSubArray]
 //     OR you can use a loop and push items in one by one.
 function flatten(arr) {
-  // TODO: write your code here
+  let result = [];
+  arr.forEach(element => {
+    if (!Array.isArray(element)) result.push(element);
+    else result = [...result, ...element];
+  });
+  return result;
 }
 
 console.log(flatten([1, 2, 3]));                    // [1, 2, 3]
@@ -114,7 +123,13 @@ console.log('\n--- Problem 5: countOccurrences ---');
 //
 // Hint: how is this structure similar to flatten above?
 function countOccurrences(arr, target) {
-  // TODO: write your code here
+  let count = 0;
+  arr.forEach(element => {
+    if (Array.isArray(element)) count += countOccurrences(element,target);
+    else if (element === target) count += 1;
+    else count += 0;
+  });
+  return count;
 }
 
 console.log(countOccurrences([1, 2, 3], 1));                   // 1

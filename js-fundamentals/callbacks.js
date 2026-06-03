@@ -20,7 +20,10 @@ console.log('\n--- Problem 1: applyTwice ---');
 //
 // No loops needed — just two function calls.
 function applyTwice(fn, value) {
-  // TODO: write your code here
+  const firstResult = fn(value);
+  const secondResult = fn(firstResult);
+
+  return secondResult;
 }
 
 const addTen = (n) => n + 10;
@@ -39,8 +42,7 @@ console.log('\n--- Problem 2: makeMultiplier ---');
 // Hint: your function body should have a single `return` that returns another function.
 // The inner function can "see" factor from the outer scope — that's called a closure.
 function makeMultiplier(factor) {
-  // TODO: write your code here
-  // return function(n) { ... }
+  return function(n) { return factor*n; }
 }
 
 const triple = makeMultiplier(3);
@@ -60,7 +62,7 @@ console.log('\n--- Problem 3: makeGreeting ---');
 // Hint: how does this relate to makeMultiplier?
 //       Both take one thing and return a function that uses that thing later.
 function makeGreeting(greeting) {
-  // TODO: write your code here
+  return function(name) {return `${greeting}, ${name}!`}
 }
 
 const sayHello = makeGreeting('Hello');
@@ -78,7 +80,9 @@ console.log('\n--- Problem 4: runAll ---');
 //
 // Hint: loop through the array. What do you call on each element?
 function runAll(fns) {
-  // TODO: write your code here
+  for (const fn of fns) {
+    fn();
+  }
 }
 
 runAll([
@@ -101,7 +105,11 @@ console.log('\n--- Problem 5: mapWith ---');
 // Hint: start with an empty result array.
 //       For each item in arr, push fn(item) into result.
 function mapWith(arr, fn) {
-  // TODO: write your code here
+  const result = [];
+  for (const e of arr) {
+    result.push(fn(e));
+  }
+  return result;
 }
 
 console.log(mapWith([1, 2, 3], (n) => n * n));        // [1, 4, 9]
@@ -118,7 +126,11 @@ console.log('\n--- Problem 6: filterWith ---');
 // Hint: same structure as mapWith, but instead of always pushing,
 //       only push when the callback returns something truthy.
 function filterWith(arr, fn) {
-  // TODO: write your code here
+  const result = [];
+  for (const e of arr) {
+    if (fn(e) === true) result.push(e);
+  }
+  return result;
 }
 
 console.log(filterWith([1, 2, 3, 4, 5], (n) => n % 2 === 0));  // [2, 4]
@@ -141,7 +153,12 @@ console.log('\n--- Problem 7: createCounter ---');
 //       Return an object whose methods use that variable.
 //       This is a closure — the methods "close over" count.
 function createCounter() {
-  // TODO: write your code here
+  let count = 0;
+  return {
+    increment() {count += 1;},
+    decrement() {count -= 1;},
+    getCount() {return count;},
+  }
 }
 
 const counter = createCounter();
